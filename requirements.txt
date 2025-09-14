@@ -1,9 +1,3 @@
-# RAG-ASAP Requirements
-# Minimal dependencies for the demo
-
-# No external dependencies required for the basic demo
-# Future enhancements might include:
-# numpy>=1.21.0
-# scikit-learn>=1.0.0
-# faiss-cpu>=1.7.0
-# transformers>=4.20.0
+# optional — run fallback mode without these, but install for better results
+sentence-transformers>=2.2.2
+torch>=1.12.0   # required by sentence-transformers; if this is heavy, users can skip
