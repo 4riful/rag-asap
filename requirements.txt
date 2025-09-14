@@ -1,0 +1,9 @@
+# RAG-ASAP Requirements
+# Minimal dependencies for the demo
+
+# No external dependencies required for the basic demo
+# Future enhancements might include:
+# numpy>=1.21.0
+# scikit-learn>=1.0.0
+# faiss-cpu>=1.7.0
+# transformers>=4.20.0
