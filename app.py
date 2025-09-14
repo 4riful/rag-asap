@@ -13,7 +13,6 @@ Usage:
 import sys
 import argparse
 from pathlib import Path
-import math
 
 # optional imports
 try:
@@ -23,6 +22,7 @@ except Exception:
     HAS_S2 = False
 
 EXAMPLE_DOC = Path("examples/README_DOC.txt")
+
 
 def build_chunks(text, chunk_size=400):
     words = text.split()
@@ -34,15 +34,18 @@ def build_chunks(text, chunk_size=400):
         i += chunk_size
     return chunks
 
+
 def overlap_score(query, text):
     q = set(query.lower().split())
     t = set(text.lower().split())
     return len(q & t)
 
+
 def query_by_overlap(query, chunks, top=1):
     scored = [(overlap_score(query, c), c) for c in chunks]
     scored.sort(key=lambda x: x[0], reverse=True)
-    return [c for s,c in scored[:top] if s>0] or [chunks[0]]
+    return [c for s, c in scored[:top] if s > 0] or [chunks[0]]
+
 
 def query_by_sbert(model_name, query, chunks, top=1):
     if not HAS_S2:
@@ -54,12 +57,14 @@ def query_by_sbert(model_name, query, chunks, top=1):
     # hits is list of dicts with 'corpus_id' and 'score'
     return [chunks[h['corpus_id']] for h in hits]
 
+
 def load_chunks(path=EXAMPLE_DOC):
     if not path.exists():
         print(f"Error: example document not found at {path}", file=sys.stderr)
         sys.exit(2)
     text = path.read_text(encoding="utf-8")
     return build_chunks(text)
+
 
 def main():
     ap = argparse.ArgumentParser(prog="rag-asap", description="Tiny local RAG demo")
@@ -83,6 +88,7 @@ def main():
     print("\n=== TOP RESULT(S) ===")
     for i, r in enumerate(results, 1):
         print(f"\n[{i}]\n{r}\n")
+
 
 if __name__ == "__main__":
     main()
