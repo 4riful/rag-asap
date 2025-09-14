@@ -30,9 +30,6 @@ python3 app.py --model sentence-transformers/all-MiniLM-L6-v2 "what is rag"
 * Improve README, add more examples, add tests
 * See `.github/CONTRIBUTING.md` for contribution steps
 
-## Run tests (CI)
-
-* We run static checks (flake8) and basic Python lint in CI.
 
 ## License
 
